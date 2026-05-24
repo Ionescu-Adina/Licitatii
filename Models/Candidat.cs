@@ -12,6 +12,12 @@ namespace Licitatii.Models
         public int Varsta { get; set; }
         public string Adresa { get; set; }
         public List<Oferta> Oferte { get; set; } = new List<Oferta>();
+
+        public int NumarOferte {
+            get {
+                return Licitatii.Count;
+            }
+        }
         public List<Licitatie> Licitatii { get; set; } = new List<Licitatie>();
     }
 }
