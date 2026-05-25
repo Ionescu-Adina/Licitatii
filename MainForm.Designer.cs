@@ -29,19 +29,22 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dataGridLicitatii = new DataGridView();
             licitatieIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             numeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             valoareStartDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             valoareFinalaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dataInceputDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            esteFinalizataDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+            DataFinal = new DataGridViewTextBoxColumn();
             licitatieBindingSource = new BindingSource(components);
             contextLicitatiiBindingSource = new BindingSource(components);
             btnAdaugaLicitatie = new Button();
             btnStergeLicitatie = new Button();
             tabControlMain = new TabControl();
             tabPageLicitatii = new TabPage();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusNumarLicitatii = new ToolStripStatusLabel();
             tabPageCandidati = new TabPage();
             dataGridCandidati = new DataGridView();
             candidatIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -52,14 +55,34 @@
             candidatBindingSource = new BindingSource(components);
             btnAdaugaCandidat = new Button();
             btnStergeCandidat = new Button();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            genereazaRaportTextToolStripMenuItem = new ToolStripMenuItem();
+            printeazaDocumentulToolStripMenuItem = new ToolStripMenuItem();
+            previzualizeazaPrintToolStripMenuItem = new ToolStripMenuItem();
+            setariPrintToolStripMenuItem = new ToolStripMenuItem();
+            serializareJSONToolStripMenuItem = new ToolStripMenuItem();
+            serializeazaLicitatiiToolStripMenuItem = new ToolStripMenuItem();
+            deserializeazaLicitatiiToolStripMenuItem = new ToolStripMenuItem();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            veziEvolutiaPreturilorToolStripMenuItem = new ToolStripMenuItem();
+            copiazaToolStripMenuItem = new ToolStripMenuItem();
+            lipesteToolStripMenuItem = new ToolStripMenuItem();
+            printDocument = new System.Drawing.Printing.PrintDocument();
+            pageSetupDialog = new PageSetupDialog();
+            printPreviewDialog = new PrintPreviewDialog();
+            printDialog = new PrintDialog();
             ((System.ComponentModel.ISupportInitialize)dataGridLicitatii).BeginInit();
             ((System.ComponentModel.ISupportInitialize)licitatieBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)contextLicitatiiBindingSource).BeginInit();
             tabControlMain.SuspendLayout();
             tabPageLicitatii.SuspendLayout();
+            statusStrip1.SuspendLayout();
             tabPageCandidati.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridCandidati).BeginInit();
             ((System.ComponentModel.ISupportInitialize)candidatBindingSource).BeginInit();
+            menuStrip1.SuspendLayout();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridLicitatii
@@ -72,12 +95,14 @@
             dataGridLicitatii.AutoGenerateColumns = false;
             dataGridLicitatii.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridLicitatii.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridLicitatii.Columns.AddRange(new DataGridViewColumn[] { licitatieIdDataGridViewTextBoxColumn, numeDataGridViewTextBoxColumn, valoareStartDataGridViewTextBoxColumn, valoareFinalaDataGridViewTextBoxColumn, dataInceputDataGridViewTextBoxColumn, esteFinalizataDataGridViewCheckBoxColumn });
+            dataGridLicitatii.Columns.AddRange(new DataGridViewColumn[] { licitatieIdDataGridViewTextBoxColumn, numeDataGridViewTextBoxColumn, valoareStartDataGridViewTextBoxColumn, valoareFinalaDataGridViewTextBoxColumn, dataInceputDataGridViewTextBoxColumn, DataFinal });
             dataGridLicitatii.DataSource = licitatieBindingSource;
-            dataGridLicitatii.Location = new Point(0, 67);
+            dataGridLicitatii.Location = new Point(6, 38);
             dataGridLicitatii.Name = "dataGridLicitatii";
-            dataGridLicitatii.Size = new Size(777, 339);
+            dataGridLicitatii.Size = new Size(935, 403);
             dataGridLicitatii.TabIndex = 1;
+            dataGridLicitatii.CellDoubleClick += dataGridLicitatii_CellDoubleClick;
+            dataGridLicitatii.CellMouseDown += dataGridLicitatii_CellMouseDown;
             // 
             // licitatieIdDataGridViewTextBoxColumn
             // 
@@ -109,11 +134,11 @@
             dataInceputDataGridViewTextBoxColumn.HeaderText = "DataInceput";
             dataInceputDataGridViewTextBoxColumn.Name = "dataInceputDataGridViewTextBoxColumn";
             // 
-            // esteFinalizataDataGridViewCheckBoxColumn
+            // DataFinal
             // 
-            esteFinalizataDataGridViewCheckBoxColumn.DataPropertyName = "EsteFinalizata";
-            esteFinalizataDataGridViewCheckBoxColumn.HeaderText = "EsteFinalizata";
-            esteFinalizataDataGridViewCheckBoxColumn.Name = "esteFinalizataDataGridViewCheckBoxColumn";
+            DataFinal.DataPropertyName = "DataFinal";
+            DataFinal.HeaderText = "DataFinal";
+            DataFinal.Name = "DataFinal";
             // 
             // licitatieBindingSource
             // 
@@ -125,21 +150,21 @@
             // 
             // btnAdaugaLicitatie
             // 
-            btnAdaugaLicitatie.Anchor = AnchorStyles.Right;
-            btnAdaugaLicitatie.Location = new Point(696, 38);
+            btnAdaugaLicitatie.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAdaugaLicitatie.Location = new Point(865, 7);
             btnAdaugaLicitatie.Name = "btnAdaugaLicitatie";
-            btnAdaugaLicitatie.Size = new Size(75, 23);
+            btnAdaugaLicitatie.Size = new Size(76, 25);
             btnAdaugaLicitatie.TabIndex = 2;
-            btnAdaugaLicitatie.Text = "Adauga";
+            btnAdaugaLicitatie.Text = "&Adauga";
             btnAdaugaLicitatie.UseVisualStyleBackColor = true;
             btnAdaugaLicitatie.Click += button1_Click;
             // 
             // btnStergeLicitatie
             // 
-            btnStergeLicitatie.Anchor = AnchorStyles.Right;
-            btnStergeLicitatie.Location = new Point(615, 38);
+            btnStergeLicitatie.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnStergeLicitatie.Location = new Point(784, 7);
             btnStergeLicitatie.Name = "btnStergeLicitatie";
-            btnStergeLicitatie.Size = new Size(75, 23);
+            btnStergeLicitatie.Size = new Size(76, 25);
             btnStergeLicitatie.TabIndex = 3;
             btnStergeLicitatie.Text = "Sterge";
             btnStergeLicitatie.UseVisualStyleBackColor = true;
@@ -150,24 +175,39 @@
             tabControlMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControlMain.Controls.Add(tabPageLicitatii);
             tabControlMain.Controls.Add(tabPageCandidati);
-            tabControlMain.Location = new Point(12, 12);
+            tabControlMain.Location = new Point(3, 38);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
-            tabControlMain.Size = new Size(785, 434);
+            tabControlMain.Size = new Size(955, 475);
             tabControlMain.TabIndex = 4;
             // 
             // tabPageLicitatii
             // 
+            tabPageLicitatii.Controls.Add(statusStrip1);
             tabPageLicitatii.Controls.Add(dataGridLicitatii);
             tabPageLicitatii.Controls.Add(btnAdaugaLicitatie);
             tabPageLicitatii.Controls.Add(btnStergeLicitatie);
             tabPageLicitatii.Location = new Point(4, 24);
             tabPageLicitatii.Name = "tabPageLicitatii";
             tabPageLicitatii.Padding = new Padding(3);
-            tabPageLicitatii.Size = new Size(777, 406);
+            tabPageLicitatii.Size = new Size(947, 447);
             tabPageLicitatii.TabIndex = 0;
             tabPageLicitatii.Text = "Licitatii";
             tabPageLicitatii.UseVisualStyleBackColor = true;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusNumarLicitatii });
+            statusStrip1.Location = new Point(3, 422);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(941, 22);
+            statusStrip1.TabIndex = 4;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusNumarLicitatii
+            // 
+            toolStripStatusNumarLicitatii.Name = "toolStripStatusNumarLicitatii";
+            toolStripStatusNumarLicitatii.Size = new Size(0, 17);
             // 
             // tabPageCandidati
             // 
@@ -177,7 +217,7 @@
             tabPageCandidati.Location = new Point(4, 24);
             tabPageCandidati.Name = "tabPageCandidati";
             tabPageCandidati.Padding = new Padding(3);
-            tabPageCandidati.Size = new Size(777, 406);
+            tabPageCandidati.Size = new Size(947, 447);
             tabPageCandidati.TabIndex = 1;
             tabPageCandidati.Text = "Candidati";
             tabPageCandidati.UseVisualStyleBackColor = true;
@@ -193,9 +233,9 @@
             dataGridCandidati.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridCandidati.Columns.AddRange(new DataGridViewColumn[] { candidatIdDataGridViewTextBoxColumn, numeDataGridViewTextBoxColumn1, varstaDataGridViewTextBoxColumn, adresaDataGridViewTextBoxColumn, numarOferteDataGridViewTextBoxColumn });
             dataGridCandidati.DataSource = candidatBindingSource;
-            dataGridCandidati.Location = new Point(1, 77);
+            dataGridCandidati.Location = new Point(6, 37);
             dataGridCandidati.Name = "dataGridCandidati";
-            dataGridCandidati.Size = new Size(776, 329);
+            dataGridCandidati.Size = new Size(935, 404);
             dataGridCandidati.TabIndex = 5;
             dataGridCandidati.CellDoubleClick += dataGridCandidati_CellDoubleClick;
             // 
@@ -236,10 +276,10 @@
             // 
             // btnAdaugaCandidat
             // 
-            btnAdaugaCandidat.Anchor = AnchorStyles.Right;
-            btnAdaugaCandidat.Location = new Point(699, 48);
+            btnAdaugaCandidat.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAdaugaCandidat.Location = new Point(866, 6);
             btnAdaugaCandidat.Name = "btnAdaugaCandidat";
-            btnAdaugaCandidat.Size = new Size(75, 23);
+            btnAdaugaCandidat.Size = new Size(75, 25);
             btnAdaugaCandidat.TabIndex = 4;
             btnAdaugaCandidat.Text = "Adauga";
             btnAdaugaCandidat.UseVisualStyleBackColor = true;
@@ -247,43 +287,163 @@
             // 
             // btnStergeCandidat
             // 
-            btnStergeCandidat.Anchor = AnchorStyles.Right;
-            btnStergeCandidat.Location = new Point(618, 48);
+            btnStergeCandidat.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnStergeCandidat.Location = new Point(785, 6);
             btnStergeCandidat.Name = "btnStergeCandidat";
-            btnStergeCandidat.Size = new Size(75, 23);
+            btnStergeCandidat.Size = new Size(75, 25);
             btnStergeCandidat.TabIndex = 3;
             btnStergeCandidat.Text = "Sterge";
             btnStergeCandidat.UseVisualStyleBackColor = true;
             btnStergeCandidat.Click += btnStergeCandidat_Click;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, serializareJSONToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(958, 24);
+            menuStrip1.TabIndex = 5;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { genereazaRaportTextToolStripMenuItem, printeazaDocumentulToolStripMenuItem, previzualizeazaPrintToolStripMenuItem, setariPrintToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Text = "File";
+            // 
+            // genereazaRaportTextToolStripMenuItem
+            // 
+            genereazaRaportTextToolStripMenuItem.Name = "genereazaRaportTextToolStripMenuItem";
+            genereazaRaportTextToolStripMenuItem.Size = new Size(190, 22);
+            genereazaRaportTextToolStripMenuItem.Text = "Genereaza raport text";
+            genereazaRaportTextToolStripMenuItem.Click += genereazaRaportTextToolStripMenuItem_Click;
+            // 
+            // printeazaDocumentulToolStripMenuItem
+            // 
+            printeazaDocumentulToolStripMenuItem.Name = "printeazaDocumentulToolStripMenuItem";
+            printeazaDocumentulToolStripMenuItem.Size = new Size(190, 22);
+            printeazaDocumentulToolStripMenuItem.Text = "&Printeaza documentul";
+            printeazaDocumentulToolStripMenuItem.Click += printeazaDocumentulToolStripMenuItem_Click;
+            // 
+            // previzualizeazaPrintToolStripMenuItem
+            // 
+            previzualizeazaPrintToolStripMenuItem.Name = "previzualizeazaPrintToolStripMenuItem";
+            previzualizeazaPrintToolStripMenuItem.Size = new Size(190, 22);
+            previzualizeazaPrintToolStripMenuItem.Text = "Previzualizeaza print";
+            previzualizeazaPrintToolStripMenuItem.Click += previzualizeazaPrintToolStripMenuItem_Click;
+            // 
+            // setariPrintToolStripMenuItem
+            // 
+            setariPrintToolStripMenuItem.Name = "setariPrintToolStripMenuItem";
+            setariPrintToolStripMenuItem.Size = new Size(190, 22);
+            setariPrintToolStripMenuItem.Text = "Setari print";
+            setariPrintToolStripMenuItem.Click += setariPrintToolStripMenuItem_Click;
+            // 
+            // serializareJSONToolStripMenuItem
+            // 
+            serializareJSONToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { serializeazaLicitatiiToolStripMenuItem, deserializeazaLicitatiiToolStripMenuItem });
+            serializareJSONToolStripMenuItem.Name = "serializareJSONToolStripMenuItem";
+            serializareJSONToolStripMenuItem.Size = new Size(102, 20);
+            serializareJSONToolStripMenuItem.Text = "Serializare JSON";
+            // 
+            // serializeazaLicitatiiToolStripMenuItem
+            // 
+            serializeazaLicitatiiToolStripMenuItem.Name = "serializeazaLicitatiiToolStripMenuItem";
+            serializeazaLicitatiiToolStripMenuItem.Size = new Size(187, 22);
+            serializeazaLicitatiiToolStripMenuItem.Text = "Serializeaza Licitatii";
+            serializeazaLicitatiiToolStripMenuItem.Click += serializeazaLicitatiiToolStripMenuItem_Click;
+            // 
+            // deserializeazaLicitatiiToolStripMenuItem
+            // 
+            deserializeazaLicitatiiToolStripMenuItem.Name = "deserializeazaLicitatiiToolStripMenuItem";
+            deserializeazaLicitatiiToolStripMenuItem.Size = new Size(187, 22);
+            deserializeazaLicitatiiToolStripMenuItem.Text = "Deserializeaza Licitatii";
+            deserializeazaLicitatiiToolStripMenuItem.Click += deserializeazaLicitatiiToolStripMenuItem_Click;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { veziEvolutiaPreturilorToolStripMenuItem, copiazaToolStripMenuItem, lipesteToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(192, 70);
+            // 
+            // veziEvolutiaPreturilorToolStripMenuItem
+            // 
+            veziEvolutiaPreturilorToolStripMenuItem.Name = "veziEvolutiaPreturilorToolStripMenuItem";
+            veziEvolutiaPreturilorToolStripMenuItem.Size = new Size(191, 22);
+            veziEvolutiaPreturilorToolStripMenuItem.Text = "Vezi evolutia preturilor";
+            veziEvolutiaPreturilorToolStripMenuItem.Click += veziEvolutiaPreturilorToolStripMenuItem_Click;
+            // 
+            // copiazaToolStripMenuItem
+            // 
+            copiazaToolStripMenuItem.Name = "copiazaToolStripMenuItem";
+            copiazaToolStripMenuItem.Size = new Size(191, 22);
+            copiazaToolStripMenuItem.Text = "Copiaza";
+            copiazaToolStripMenuItem.Click += copiazaToolStripMenuItem_Click_1;
+            // 
+            // lipesteToolStripMenuItem
+            // 
+            lipesteToolStripMenuItem.Name = "lipesteToolStripMenuItem";
+            lipesteToolStripMenuItem.Size = new Size(191, 22);
+            lipesteToolStripMenuItem.Text = "Lipeste";
+            lipesteToolStripMenuItem.Click += lipesteToolStripMenuItem_Click;
+            // 
+            // printDocument
+            // 
+            printDocument.BeginPrint += printDocument_BeginPrint;
+            printDocument.PrintPage += printDocument_PrintPage;
+            // 
+            // pageSetupDialog
+            // 
+            pageSetupDialog.Document = printDocument;
+            // 
+            // printPreviewDialog
+            // 
+            printPreviewDialog.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog.ClientSize = new Size(400, 300);
+            printPreviewDialog.Document = printDocument;
+            printPreviewDialog.Enabled = true;
+            printPreviewDialog.Icon = (Icon)resources.GetObject("printPreviewDialog.Icon");
+            printPreviewDialog.Name = "printPreviewDialog";
+            printPreviewDialog.Visible = false;
+            // 
+            // printDialog
+            // 
+            printDialog.Document = printDocument;
+            printDialog.UseEXDialog = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(958, 514);
             Controls.Add(tabControlMain);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "MainForm";
-            Text = "Form1";
+            Text = "Licitatii";
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridLicitatii).EndInit();
             ((System.ComponentModel.ISupportInitialize)licitatieBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)contextLicitatiiBindingSource).EndInit();
             tabControlMain.ResumeLayout(false);
             tabPageLicitatii.ResumeLayout(false);
+            tabPageLicitatii.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             tabPageCandidati.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridCandidati).EndInit();
             ((System.ComponentModel.ISupportInitialize)candidatBindingSource).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
         private DataGridView dataGridLicitatii;
-        private DataGridViewTextBoxColumn licitatieIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn numeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn valoareStartDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn valoareFinalaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dataInceputDataGridViewTextBoxColumn;
-        private DataGridViewCheckBoxColumn esteFinalizataDataGridViewCheckBoxColumn;
         private BindingSource licitatieBindingSource;
         private BindingSource contextLicitatiiBindingSource;
         private Button btnAdaugaLicitatie;
@@ -300,5 +460,30 @@
         private DataGridViewTextBoxColumn adresaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn numarOferteDataGridViewTextBoxColumn;
         private BindingSource candidatBindingSource;
+        private DataGridViewTextBoxColumn licitatieIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn numeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn valoareStartDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn valoareFinalaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataInceputDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn DataFinal;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusNumarLicitatii;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem genereazaRaportTextToolStripMenuItem;
+        private ToolStripMenuItem serializareJSONToolStripMenuItem;
+        private ToolStripMenuItem serializeazaLicitatiiToolStripMenuItem;
+        private ToolStripMenuItem deserializeazaLicitatiiToolStripMenuItem;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem veziEvolutiaPreturilorToolStripMenuItem;
+        private ToolStripMenuItem printeazaDocumentulToolStripMenuItem;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private PageSetupDialog pageSetupDialog;
+        private ToolStripMenuItem previzualizeazaPrintToolStripMenuItem;
+        private ToolStripMenuItem setariPrintToolStripMenuItem;
+        private PrintPreviewDialog printPreviewDialog;
+        private PrintDialog printDialog;
+        private ToolStripMenuItem copiazaToolStripMenuItem;
+        private ToolStripMenuItem lipesteToolStripMenuItem;
     }
 }

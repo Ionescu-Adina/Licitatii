@@ -37,12 +37,16 @@
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             groupBox2 = new GroupBox();
+            label7 = new Label();
+            label6 = new Label();
+            label4 = new Label();
             btnAdaugaOferta = new Button();
             textBoxSumaOferita = new TextBox();
             textBoxValoareLicitatie = new TextBox();
             comboBoxSelectLicitatie = new ComboBox();
             label3 = new Label();
             groupBox3 = new GroupBox();
+            button1 = new Button();
             dataGridOferteCandidat = new DataGridView();
             ofertaIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             NumeLicitatie = new DataGridViewTextBoxColumn();
@@ -51,11 +55,13 @@
             ofertaBindingSource = new BindingSource(components);
             btnOK = new Button();
             btnCancel = new Button();
+            errorProvider = new ErrorProvider(components);
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridOferteCandidat).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ofertaBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -70,7 +76,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(17, 39);
+            label2.Location = new Point(15, 39);
             label2.Name = "label2";
             label2.Size = new Size(40, 15);
             label2.TabIndex = 1;
@@ -95,7 +101,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(776, 147);
+            groupBox1.Size = new Size(814, 147);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Informatii personale";
@@ -113,6 +119,8 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(150, 23);
             textBox2.TabIndex = 6;
+            textBox2.Validating += textBox2_Validating;
+            textBox2.Validated += textBox2_Validated;
             // 
             // textBox1
             // 
@@ -123,6 +131,9 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(label7);
+            groupBox2.Controls.Add(label6);
+            groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(btnAdaugaOferta);
             groupBox2.Controls.Add(textBoxSumaOferita);
             groupBox2.Controls.Add(textBoxValoareLicitatie);
@@ -130,16 +141,44 @@
             groupBox2.Controls.Add(label3);
             groupBox2.Location = new Point(12, 168);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(776, 77);
+            groupBox2.Size = new Size(814, 77);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "Adauga Oferta";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(438, 21);
+            label7.Name = "label7";
+            label7.Size = new Size(53, 15);
+            label7.TabIndex = 7;
+            label7.Text = "Oferta ta";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(229, 21);
+            label6.Name = "label6";
+            label6.Size = new Size(76, 15);
+            label6.TabIndex = 6;
+            label6.Text = "Ultima oferta";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(18, 21);
+            label4.Name = "label4";
+            label4.Size = new Size(48, 15);
+            label4.TabIndex = 5;
+            label4.Text = "Licitatie";
+            // 
             // btnAdaugaOferta
             // 
-            btnAdaugaOferta.Location = new Point(676, 38);
+            btnAdaugaOferta.Anchor = AnchorStyles.Right;
+            btnAdaugaOferta.Location = new Point(701, 40);
             btnAdaugaOferta.Name = "btnAdaugaOferta";
-            btnAdaugaOferta.Size = new Size(94, 23);
+            btnAdaugaOferta.Size = new Size(95, 23);
             btnAdaugaOferta.TabIndex = 4;
             btnAdaugaOferta.Text = "Adauga Oferta";
             btnAdaugaOferta.UseVisualStyleBackColor = true;
@@ -147,15 +186,15 @@
             // 
             // textBoxSumaOferita
             // 
-            textBoxSumaOferita.Location = new Point(502, 38);
+            textBoxSumaOferita.Location = new Point(438, 39);
             textBoxSumaOferita.Name = "textBoxSumaOferita";
-            textBoxSumaOferita.Size = new Size(137, 23);
+            textBoxSumaOferita.Size = new Size(160, 23);
             textBoxSumaOferita.TabIndex = 3;
             // 
             // textBoxValoareLicitatie
             // 
             textBoxValoareLicitatie.Enabled = false;
-            textBoxValoareLicitatie.Location = new Point(279, 38);
+            textBoxValoareLicitatie.Location = new Point(229, 40);
             textBoxValoareLicitatie.Name = "textBoxValoareLicitatie";
             textBoxValoareLicitatie.ReadOnly = true;
             textBoxValoareLicitatie.Size = new Size(160, 23);
@@ -164,9 +203,9 @@
             // comboBoxSelectLicitatie
             // 
             comboBoxSelectLicitatie.FormattingEnabled = true;
-            comboBoxSelectLicitatie.Location = new Point(61, 38);
+            comboBoxSelectLicitatie.Location = new Point(18, 40);
             comboBoxSelectLicitatie.Name = "comboBoxSelectLicitatie";
-            comboBoxSelectLicitatie.Size = new Size(150, 23);
+            comboBoxSelectLicitatie.Size = new Size(160, 23);
             comboBoxSelectLicitatie.TabIndex = 1;
             comboBoxSelectLicitatie.SelectedIndexChanged += comboBoxSelectLicitatie_SelectedIndexChanged;
             // 
@@ -180,13 +219,25 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(button1);
             groupBox3.Controls.Add(dataGridOferteCandidat);
             groupBox3.Location = new Point(12, 251);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(776, 187);
+            groupBox3.Padding = new Padding(15, 3, 15, 3);
+            groupBox3.Size = new Size(814, 259);
             groupBox3.TabIndex = 7;
             groupBox3.TabStop = false;
             groupBox3.Text = "Oferte";
+            // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Right;
+            button1.Location = new Point(702, 18);
+            button1.Name = "button1";
+            button1.Size = new Size(95, 23);
+            button1.TabIndex = 1;
+            button1.Text = "Sterge Oferta";
+            button1.UseVisualStyleBackColor = true;
             // 
             // dataGridOferteCandidat
             // 
@@ -194,14 +245,15 @@
             dataGridOferteCandidat.AllowUserToDeleteRows = false;
             dataGridOferteCandidat.AllowUserToResizeColumns = false;
             dataGridOferteCandidat.AllowUserToResizeRows = false;
+            dataGridOferteCandidat.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridOferteCandidat.AutoGenerateColumns = false;
             dataGridOferteCandidat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridOferteCandidat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridOferteCandidat.Columns.AddRange(new DataGridViewColumn[] { ofertaIdDataGridViewTextBoxColumn, NumeLicitatie, sumaOferitaDataGridViewTextBoxColumn, dataOfertaDataGridViewTextBoxColumn });
             dataGridOferteCandidat.DataSource = ofertaBindingSource;
-            dataGridOferteCandidat.Location = new Point(6, 22);
+            dataGridOferteCandidat.Location = new Point(18, 47);
             dataGridOferteCandidat.Name = "dataGridOferteCandidat";
-            dataGridOferteCandidat.Size = new Size(764, 159);
+            dataGridOferteCandidat.Size = new Size(778, 192);
             dataGridOferteCandidat.TabIndex = 0;
             // 
             // ofertaIdDataGridViewTextBoxColumn
@@ -235,7 +287,7 @@
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(632, 482);
+            btnOK.Location = new Point(670, 531);
             btnOK.Name = "btnOK";
             btnOK.Size = new Size(75, 23);
             btnOK.TabIndex = 8;
@@ -245,7 +297,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(713, 482);
+            btnCancel.Location = new Point(751, 531);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(75, 23);
             btnCancel.TabIndex = 9;
@@ -253,11 +305,15 @@
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
+            // errorProvider
+            // 
+            errorProvider.ContainerControl = this;
+            // 
             // AddCandidatPopup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 514);
+            ClientSize = new Size(838, 566);
             Controls.Add(btnCancel);
             Controls.Add(btnOK);
             Controls.Add(groupBox3);
@@ -273,6 +329,7 @@
             groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridOferteCandidat).EndInit();
             ((System.ComponentModel.ISupportInitialize)ofertaBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
         }
 
@@ -300,5 +357,10 @@
         private DataGridViewTextBoxColumn NumeLicitatie;
         private DataGridViewTextBoxColumn sumaOferitaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dataOfertaDataGridViewTextBoxColumn;
+        private Label label7;
+        private Label label6;
+        private Label label4;
+        private Button button1;
+        private ErrorProvider errorProvider;
     }
 }

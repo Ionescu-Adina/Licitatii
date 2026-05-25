@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licitatii.Migrations
 {
     [DbContext(typeof(ContextLicitatii))]
-    [Migration("20260521204605_InitialCreate")]
+    [Migration("20260525193043_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -63,11 +63,11 @@ namespace Licitatii.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DataInceput")
+                    b.Property<DateTime>("DataFinal")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("EsteFinalizata")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTime>("DataInceput")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Nume")
                         .IsRequired()

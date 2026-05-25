@@ -16,7 +16,7 @@ namespace Licitatii
         {
             try
             {
-               Database.Migrate();
+                Database.Migrate();
             }
             catch (Exception ex)
             {

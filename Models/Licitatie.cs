@@ -11,7 +11,14 @@ namespace Licitatii.Models
         public decimal ValoareStart { get; set; }
         public decimal ValoareFinala { get; set; }
         public DateTime DataInceput { get; set; }
-        public bool EsteFinalizata { get; set; }
+        public DateTime DataFinal { get; set; }
+        public bool EsteFinalizata
+        {
+            get
+            {
+                return DateTime.Now > DataFinal;
+            }
+        }
         public List<Candidat> Candidati { get; set; } = new List<Candidat>();
         public List<Oferta> Oferte { get; set; } = new List<Oferta>();
     }

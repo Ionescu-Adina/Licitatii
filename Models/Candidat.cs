@@ -15,7 +15,7 @@ namespace Licitatii.Models
 
         public int NumarOferte {
             get {
-                return Licitatii.Count;
+                return Oferte.Count;
             }
         }
         public List<Licitatie> Licitatii { get; set; } = new List<Licitatie>();

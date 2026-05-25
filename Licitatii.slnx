@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../GraphicsControl/GraphicsControl.csproj" Id="73c333ed-3e0e-4be0-a9fa-3828899a50c6" />
   <Project Path="Licitatii.csproj" />
 </Solution>

@@ -39,7 +39,7 @@ namespace Licitatii
                 textBox1.Text = _candidat.Nume;
                 textBox2.Text = _candidat.Varsta.ToString();
                 textBox3.Text = _candidat.Adresa;
-                comboBoxSelectLicitatie.DataSource = _ctx.Licitatii.Where(l => !l.EsteFinalizata).ToList();
+                comboBoxSelectLicitatie.DataSource = _ctx.Licitatii.Where(l => l.DataFinal > DateTime.Now).ToList();
                 comboBoxSelectLicitatie.DisplayMember = "Nume";
                 comboBoxSelectLicitatie.ValueMember = "LicitatieId";
             }
@@ -103,7 +103,16 @@ namespace Licitatii
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(_candidat == null)
+            if(!ValidateChildren())
+            {
+                MessageBox.Show("The form contains errors!",
+                    "Error",
+                      MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
+            }
+            if (_candidat == null)
             {
                 Candidat candidat = new Candidat
                 {
@@ -128,6 +137,30 @@ namespace Licitatii
         {
             DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private bool EsteVarstaValida()
+        {
+            int varsta;
+            if (Int32.TryParse(textBox2.Text, out varsta))
+            {
+                return varsta > 0;
+            }
+            return false;
+        }
+
+        private void textBox2_Validating(object sender, CancelEventArgs e)
+        {
+            if (!EsteVarstaValida())
+            {
+                errorProvider.SetError(textBox2, "Varsta trebuie sa fie un numar intreg pozitiv.");
+                e.Cancel = true;
+            }
+        }
+
+        private void textBox2_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError((Control)sender, string.Empty);
         }
     }
 }

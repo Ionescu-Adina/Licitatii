@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Licitatii.Migrations
 {
     /// <inheritdoc />
-    public partial class ChangeVarsta : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace Licitatii.Migrations
                     CandidatId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nume = table.Column<string>(type: "TEXT", nullable: false),
-                    DataNasterii = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Varsta = table.Column<int>(type: "INTEGER", nullable: false),
                     Adresa = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -36,7 +36,7 @@ namespace Licitatii.Migrations
                     ValoareStart = table.Column<decimal>(type: "TEXT", nullable: false),
                     ValoareFinala = table.Column<decimal>(type: "TEXT", nullable: false),
                     DataInceput = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    EsteFinalizata = table.Column<bool>(type: "INTEGER", nullable: false)
+                    DataFinal = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
