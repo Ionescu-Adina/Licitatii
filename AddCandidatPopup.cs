@@ -42,6 +42,10 @@ namespace Licitatii
                 comboBoxSelectLicitatie.DataSource = _ctx.Licitatii.Where(l => l.DataFinal > DateTime.Now).ToList();
                 comboBoxSelectLicitatie.DisplayMember = "Nume";
                 comboBoxSelectLicitatie.ValueMember = "LicitatieId";
+
+                userControlProfileCard1.LoadControlData(_candidat.Nume,
+                    _ctx.Oferte.Where(o => o.CandidatId == _candidat.CandidatId).Select(o => o.LicitatieId).Distinct().Count(),
+                    _ctx.Oferte.Where(o => o.CandidatId == _candidat.CandidatId).Count());
             }
             else
             {
@@ -51,6 +55,7 @@ namespace Licitatii
                 textBoxValoareLicitatie.Visible = false;
                 textBoxSumaOferita.Visible = false;
                 dataGridOferteCandidat.Visible = false;
+                userControlProfileCard1.Visible = false;
             }
         }
 

@@ -178,29 +178,6 @@ namespace Licitatii
             }
         }
 
-        private void veziEvolutiaPreturilorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (dataGridLicitatii.SelectedRows.Count != 1)
-            {
-                return;
-            }
-            Licitatie licitatieSelectata = dataGridLicitatii.SelectedRows[0].DataBoundItem as Licitatie;
-            if (licitatieSelectata != null)
-            {
-                Form popUp = new Form();
-                popUp.Text = $"Evolutia preturilor pentru licitatia {licitatieSelectata.Nume}";
-                popUp.Size = new Size(600, 400);
-
-                UserControlEvolutieLicitatie controlGrafic = new GraphicsControl.UserControlEvolutieLicitatie();
-
-
-                //controlGrafic.IncarcaDate(oferteOrdered);
-
-                popUp.Controls.Add(controlGrafic);
-                popUp.ShowDialog();
-            }
-        }
-
         private void printeazaDocumentulToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (printDialog.ShowDialog() == DialogResult.OK)
@@ -389,7 +366,7 @@ namespace Licitatii
 
         private void dataGridLicitatii_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(e.Button != MouseButtons.Right)
+            if (e.Button != MouseButtons.Right)
             {
                 return;
             }

@@ -65,7 +65,6 @@
             serializeazaLicitatiiToolStripMenuItem = new ToolStripMenuItem();
             deserializeazaLicitatiiToolStripMenuItem = new ToolStripMenuItem();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            veziEvolutiaPreturilorToolStripMenuItem = new ToolStripMenuItem();
             copiazaToolStripMenuItem = new ToolStripMenuItem();
             lipesteToolStripMenuItem = new ToolStripMenuItem();
             printDocument = new System.Drawing.Printing.PrintDocument();
@@ -94,12 +93,13 @@
             dataGridLicitatii.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridLicitatii.AutoGenerateColumns = false;
             dataGridLicitatii.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridLicitatii.BackgroundColor = Color.Moccasin;
             dataGridLicitatii.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridLicitatii.Columns.AddRange(new DataGridViewColumn[] { licitatieIdDataGridViewTextBoxColumn, numeDataGridViewTextBoxColumn, valoareStartDataGridViewTextBoxColumn, valoareFinalaDataGridViewTextBoxColumn, dataInceputDataGridViewTextBoxColumn, DataFinal });
             dataGridLicitatii.DataSource = licitatieBindingSource;
-            dataGridLicitatii.Location = new Point(6, 38);
+            dataGridLicitatii.Location = new Point(6, 37);
             dataGridLicitatii.Name = "dataGridLicitatii";
-            dataGridLicitatii.Size = new Size(935, 403);
+            dataGridLicitatii.Size = new Size(815, 434);
             dataGridLicitatii.TabIndex = 1;
             dataGridLicitatii.CellDoubleClick += dataGridLicitatii_CellDoubleClick;
             dataGridLicitatii.CellMouseDown += dataGridLicitatii_CellMouseDown;
@@ -151,7 +151,7 @@
             // btnAdaugaLicitatie
             // 
             btnAdaugaLicitatie.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAdaugaLicitatie.Location = new Point(865, 7);
+            btnAdaugaLicitatie.Location = new Point(743, 6);
             btnAdaugaLicitatie.Name = "btnAdaugaLicitatie";
             btnAdaugaLicitatie.Size = new Size(76, 25);
             btnAdaugaLicitatie.TabIndex = 2;
@@ -162,7 +162,7 @@
             // btnStergeLicitatie
             // 
             btnStergeLicitatie.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnStergeLicitatie.Location = new Point(784, 7);
+            btnStergeLicitatie.Location = new Point(661, 6);
             btnStergeLicitatie.Name = "btnStergeLicitatie";
             btnStergeLicitatie.Size = new Size(76, 25);
             btnStergeLicitatie.TabIndex = 3;
@@ -172,35 +172,36 @@
             // 
             // tabControlMain
             // 
-            tabControlMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControlMain.Controls.Add(tabPageLicitatii);
             tabControlMain.Controls.Add(tabPageCandidati);
             tabControlMain.Location = new Point(3, 38);
+            tabControlMain.Margin = new Padding(0);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
-            tabControlMain.Size = new Size(955, 475);
+            tabControlMain.Size = new Size(835, 527);
             tabControlMain.TabIndex = 4;
             // 
             // tabPageLicitatii
             // 
+            tabPageLicitatii.BackColor = Color.Thistle;
             tabPageLicitatii.Controls.Add(statusStrip1);
             tabPageLicitatii.Controls.Add(dataGridLicitatii);
             tabPageLicitatii.Controls.Add(btnAdaugaLicitatie);
             tabPageLicitatii.Controls.Add(btnStergeLicitatie);
+            tabPageLicitatii.ForeColor = Color.Black;
             tabPageLicitatii.Location = new Point(4, 24);
             tabPageLicitatii.Name = "tabPageLicitatii";
             tabPageLicitatii.Padding = new Padding(3);
-            tabPageLicitatii.Size = new Size(947, 447);
+            tabPageLicitatii.Size = new Size(827, 499);
             tabPageLicitatii.TabIndex = 0;
             tabPageLicitatii.Text = "Licitatii";
-            tabPageLicitatii.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusNumarLicitatii });
-            statusStrip1.Location = new Point(3, 422);
+            statusStrip1.Location = new Point(3, 474);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(941, 22);
+            statusStrip1.Size = new Size(821, 22);
             statusStrip1.TabIndex = 4;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -211,16 +212,16 @@
             // 
             // tabPageCandidati
             // 
+            tabPageCandidati.BackColor = Color.Thistle;
             tabPageCandidati.Controls.Add(dataGridCandidati);
             tabPageCandidati.Controls.Add(btnAdaugaCandidat);
             tabPageCandidati.Controls.Add(btnStergeCandidat);
             tabPageCandidati.Location = new Point(4, 24);
+            tabPageCandidati.Margin = new Padding(0);
             tabPageCandidati.Name = "tabPageCandidati";
-            tabPageCandidati.Padding = new Padding(3);
-            tabPageCandidati.Size = new Size(947, 447);
+            tabPageCandidati.Size = new Size(827, 499);
             tabPageCandidati.TabIndex = 1;
             tabPageCandidati.Text = "Candidati";
-            tabPageCandidati.UseVisualStyleBackColor = true;
             // 
             // dataGridCandidati
             // 
@@ -230,12 +231,13 @@
             dataGridCandidati.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridCandidati.AutoGenerateColumns = false;
             dataGridCandidati.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridCandidati.BackgroundColor = Color.Moccasin;
             dataGridCandidati.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridCandidati.Columns.AddRange(new DataGridViewColumn[] { candidatIdDataGridViewTextBoxColumn, numeDataGridViewTextBoxColumn1, varstaDataGridViewTextBoxColumn, adresaDataGridViewTextBoxColumn, numarOferteDataGridViewTextBoxColumn });
             dataGridCandidati.DataSource = candidatBindingSource;
-            dataGridCandidati.Location = new Point(6, 37);
+            dataGridCandidati.Location = new Point(5, 37);
             dataGridCandidati.Name = "dataGridCandidati";
-            dataGridCandidati.Size = new Size(935, 404);
+            dataGridCandidati.Size = new Size(815, 455);
             dataGridCandidati.TabIndex = 5;
             dataGridCandidati.CellDoubleClick += dataGridCandidati_CellDoubleClick;
             // 
@@ -277,7 +279,7 @@
             // btnAdaugaCandidat
             // 
             btnAdaugaCandidat.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAdaugaCandidat.Location = new Point(866, 6);
+            btnAdaugaCandidat.Location = new Point(744, 6);
             btnAdaugaCandidat.Name = "btnAdaugaCandidat";
             btnAdaugaCandidat.Size = new Size(75, 25);
             btnAdaugaCandidat.TabIndex = 4;
@@ -288,7 +290,7 @@
             // btnStergeCandidat
             // 
             btnStergeCandidat.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnStergeCandidat.Location = new Point(785, 6);
+            btnStergeCandidat.Location = new Point(663, 6);
             btnStergeCandidat.Name = "btnStergeCandidat";
             btnStergeCandidat.Size = new Size(75, 25);
             btnStergeCandidat.TabIndex = 3;
@@ -301,7 +303,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, serializareJSONToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(958, 24);
+            menuStrip1.Size = new Size(838, 24);
             menuStrip1.TabIndex = 5;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -363,28 +365,21 @@
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { veziEvolutiaPreturilorToolStripMenuItem, copiazaToolStripMenuItem, lipesteToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { copiazaToolStripMenuItem, lipesteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(192, 70);
-            // 
-            // veziEvolutiaPreturilorToolStripMenuItem
-            // 
-            veziEvolutiaPreturilorToolStripMenuItem.Name = "veziEvolutiaPreturilorToolStripMenuItem";
-            veziEvolutiaPreturilorToolStripMenuItem.Size = new Size(191, 22);
-            veziEvolutiaPreturilorToolStripMenuItem.Text = "Vezi evolutia preturilor";
-            veziEvolutiaPreturilorToolStripMenuItem.Click += veziEvolutiaPreturilorToolStripMenuItem_Click;
+            contextMenuStrip1.Size = new Size(117, 48);
             // 
             // copiazaToolStripMenuItem
             // 
             copiazaToolStripMenuItem.Name = "copiazaToolStripMenuItem";
-            copiazaToolStripMenuItem.Size = new Size(191, 22);
+            copiazaToolStripMenuItem.Size = new Size(116, 22);
             copiazaToolStripMenuItem.Text = "Copiaza";
             copiazaToolStripMenuItem.Click += copiazaToolStripMenuItem_Click_1;
             // 
             // lipesteToolStripMenuItem
             // 
             lipesteToolStripMenuItem.Name = "lipesteToolStripMenuItem";
-            lipesteToolStripMenuItem.Size = new Size(191, 22);
+            lipesteToolStripMenuItem.Size = new Size(116, 22);
             lipesteToolStripMenuItem.Text = "Lipeste";
             lipesteToolStripMenuItem.Click += lipesteToolStripMenuItem_Click;
             // 
@@ -417,10 +412,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(958, 514);
+            BackColor = Color.Thistle;
+            ClientSize = new Size(838, 566);
             Controls.Add(tabControlMain);
             Controls.Add(menuStrip1);
+            Location = new Point(854, 605);
             MainMenuStrip = menuStrip1;
+            MaximumSize = new Size(854, 605);
+            MinimumSize = new Size(854, 605);
             Name = "MainForm";
             Text = "Licitatii";
             Load += MainForm_Load;
@@ -475,7 +474,6 @@
         private ToolStripMenuItem serializeazaLicitatiiToolStripMenuItem;
         private ToolStripMenuItem deserializeazaLicitatiiToolStripMenuItem;
         private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem veziEvolutiaPreturilorToolStripMenuItem;
         private ToolStripMenuItem printeazaDocumentulToolStripMenuItem;
         private System.Drawing.Printing.PrintDocument printDocument;
         private PageSetupDialog pageSetupDialog;

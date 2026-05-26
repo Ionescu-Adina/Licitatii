@@ -33,6 +33,7 @@
             label2 = new Label();
             label5 = new Label();
             groupBox1 = new GroupBox();
+            userControlProfileCard1 = new GraphicsControl.UserControlProfileCard();
             textBox3 = new TextBox();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
@@ -93,6 +94,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(userControlProfileCard1);
             groupBox1.Controls.Add(textBox3);
             groupBox1.Controls.Add(textBox2);
             groupBox1.Controls.Add(textBox1);
@@ -105,6 +107,18 @@
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Informatii personale";
+            // 
+            // userControlProfileCard1
+            // 
+            userControlProfileCard1.BackColor = Color.Moccasin;
+            userControlProfileCard1.BorderStyle = BorderStyle.FixedSingle;
+            userControlProfileCard1.Location = new Point(558, 16);
+            userControlProfileCard1.MaximumSize = new Size(250, 125);
+            userControlProfileCard1.MinimumSize = new Size(250, 125);
+            userControlProfileCard1.Name = "userControlProfileCard1";
+            userControlProfileCard1.Padding = new Padding(15, 0, 15, 0);
+            userControlProfileCard1.Size = new Size(250, 125);
+            userControlProfileCard1.TabIndex = 8;
             // 
             // textBox3
             // 
@@ -248,9 +262,11 @@
             dataGridOferteCandidat.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridOferteCandidat.AutoGenerateColumns = false;
             dataGridOferteCandidat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridOferteCandidat.BackgroundColor = Color.Moccasin;
             dataGridOferteCandidat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridOferteCandidat.Columns.AddRange(new DataGridViewColumn[] { ofertaIdDataGridViewTextBoxColumn, NumeLicitatie, sumaOferitaDataGridViewTextBoxColumn, dataOfertaDataGridViewTextBoxColumn });
             dataGridOferteCandidat.DataSource = ofertaBindingSource;
+            dataGridOferteCandidat.GridColor = SystemColors.WindowText;
             dataGridOferteCandidat.Location = new Point(18, 47);
             dataGridOferteCandidat.Name = "dataGridOferteCandidat";
             dataGridOferteCandidat.Size = new Size(778, 192);
@@ -313,14 +329,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Thistle;
             ClientSize = new Size(838, 566);
             Controls.Add(btnCancel);
             Controls.Add(btnOK);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            MaximumSize = new Size(854, 605);
+            MinimumSize = new Size(854, 605);
             Name = "AddCandidatPopup";
-            Text = "AddCandidatPopup";
+            Text = "Adauga / Editeaza Candidat";
             Load += AddCandidatPopup_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -362,5 +381,6 @@
         private Label label4;
         private Button button1;
         private ErrorProvider errorProvider;
+        private GraphicsControl.UserControlProfileCard userControlProfileCard1;
     }
 }
